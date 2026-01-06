@@ -1,7 +1,9 @@
 import express from "express";
+import dotenv from "dotenv";
+
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT;
 
 app.get("/", (req, res) => {
     res.send("Welcome to the Expenses Tracker");
