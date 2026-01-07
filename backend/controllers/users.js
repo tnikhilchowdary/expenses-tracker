@@ -1,8 +1,10 @@
 import User from "../schema/users.js";
+import bcrypt from "bcryptjs";
+
 
 export const getUsers = async (req, res) => {
     try{
-        const users = await User.find({});
+        const users = await User.find({}, "-password");
         res.status(200).json({
             message:"User Fetched Succesfully",
             users
@@ -19,8 +21,11 @@ export const getUsers = async (req, res) => {
 export const addUsers = async (req, res) => {
     try{
         const {name, email, password} = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
         const user =  new User({
-            name, email, password
+            name, 
+            email, 
+            password:hashedPassword
         });
         await user.save();
         res.status(200).json({
