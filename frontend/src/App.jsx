@@ -1,15 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import Login from "./pages/Login.jsx";
+import Sign from "./pages/Signup.jsx";
 
 function App() {
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-green-400">
-        Tailwind is WORKING ✅
-      </h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Sign />}/>
+      </Routes>
+    </Router>
   );
 }
 
