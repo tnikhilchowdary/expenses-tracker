@@ -1,11 +1,12 @@
 import {useState} from "react";
 import axios from "axios";
+import {Link, useNavigate} from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
-
+    const navigate = useNavigate();
     const hanldeLogin = async (e) => {
         e.preventDefault();
         try{
@@ -16,7 +17,7 @@ const Login = () => {
                     password
                 }
             );
-            alert("Login Succesful");
+            navigate("/dash");
         }
         catch(error){
             console.log("Error in Login Page");
@@ -36,7 +37,7 @@ const Login = () => {
                         placeholder="Enter Email"
                         value={email}
                         onChange={(e) => {setEmail(e.target.value)}}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
 
                     <input
@@ -44,7 +45,7 @@ const Login = () => {
                         placeholder="Enter Password"
                         value={password}
                         onChange={(e) => {setPassword(e.target.value)}}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
 
                     <button
@@ -54,6 +55,12 @@ const Login = () => {
                         Submit
                     </button>
                 </form>
+                 <p className="text-center text-sm text-gray-600 mt-4">
+                 Dont have an account?{" "}
+                <Link to="/signup" className="text-green-600 font-medium hover:underline">
+                Signup Here
+                </Link>
+                </p>
             </div>
         </div>
     )
